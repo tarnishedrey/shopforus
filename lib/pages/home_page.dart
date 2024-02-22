@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../models/item.dart';
-import '../pages/item_page.dart';
-import '../pages/shopping_cart.dart';
+import 'package:shopforourfuture/models/item.dart';
+import 'package:shopforourfuture/pages/item_page.dart';
+import 'package:shopforourfuture/pages/shopping_cart.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -9,22 +9,22 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List<Item> items = [
+  final List<Item> items = [
     Item(
       name: 'Zam zam',
       price: 5000,
       description: "Sumbing dikit ga ngaruh",
-      imageUrl: 'assets/images/zamzam.jpg', // Local image path
+      imageUrl: 'assets/images/zamzam.jpg',
     ),
     Item(
       name: 'Pasha',
       price: 10000,
       description: "-Skena",
-      imageUrl: 'assets/images/pasha.jpg', // Local image path
+      imageUrl: 'assets/images/pasha.jpg',
     ),
   ];
 
-  List<Item> cart = [];
+  final List<Item> cart = [];
 
   void addToCart(Item item) {
     setState(() {
@@ -34,6 +34,15 @@ class _HomePageState extends State<HomePage> {
       SnackBar(
         content: Text('Added to Cart'),
         duration: Duration(seconds: 2),
+      ),
+    );
+  }
+
+  void navigateToItemPage(Item item) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => ItemPage(item: item),
       ),
     );
   }
@@ -54,6 +63,12 @@ class _HomePageState extends State<HomePage> {
                   builder: (context) => ShoppingCart(cart: cart),
                 ),
               );
+            },
+          ),
+          IconButton(
+            icon: Icon(Icons.add_box), // Add icon for admin page
+            onPressed: () {
+              Navigator.pushNamed(context, '/admin');
             },
           ),
         ],

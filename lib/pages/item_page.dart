@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../models/item.dart';
+import 'package:shopforourfuture/models/item.dart';
 
 class ItemPage extends StatelessWidget {
   final Item item;
@@ -10,8 +10,7 @@ class ItemPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(240, 26, 7, 238),
-        title: const Text('Item Details'),
+        title: Text('Item Details'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
