@@ -1,21 +1,47 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import '../models/item.dart';
 
 class ItemPage extends StatelessWidget {
-  const ItemPage({super.key});
+  final Item item;
+
+  const ItemPage({Key? key, required this.item}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final ItemArgs = ModalRoute.of(context)!.settings.arguments as Map;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color.fromARGB(240, 26, 7, 238),
-        title: const Text('Shopping list'),
+        title: const Text('Item Details'),
       ),
-      body: Container(
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
         child: Column(
-          children: [Text(ItemArgs["name"])],
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Center(
+              child: Image.network(
+                item.imageUrl,
+                width: 200,
+                height: 200,
+                fit: BoxFit.cover,
+              ),
+            ),
+            SizedBox(height: 20),
+            Text(
+              item.name,
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(height: 10),
+            Text(
+              'Price: \$${item.price}',
+              style: TextStyle(fontSize: 18, color: Colors.green),
+            ),
+            SizedBox(height: 10),
+            Text(
+              'Description: ${item.description}',
+              style: TextStyle(fontSize: 16),
+            ),
+          ],
         ),
       ),
     );
